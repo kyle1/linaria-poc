@@ -3,6 +3,17 @@ import { css } from "@linaria/core";
 
 import { Button } from "@/components/Button";
 import { useState } from "react";
+import { ButtonThemed } from "@/components/ButtonThemed";
+
+const lightTheme = css`
+  --color-accent: #082641;
+  --color-accent-hover: #031f28;
+`;
+
+const darkTheme = css`
+  --color-accent: #258ce6;
+  --color-accent-hover: #075975;
+`;
 
 const container = css`
   display: flex;
@@ -39,7 +50,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={darkTheme}>
         <div className={container}>
           <div>
             <div className={title}>Counter</div>
@@ -62,12 +73,9 @@ export default function Home() {
               </Button>
             </div>
             <div className={buttonContainer}>
-              <Button
-                color="#076c88"
-                onClick={() => setCount((count) => count - 1)}
-              >
+              <ButtonThemed onClick={() => setCount((count) => count - 1)}>
                 Decrease
-              </Button>
+              </ButtonThemed>
             </div>
           </div>
         </div>
