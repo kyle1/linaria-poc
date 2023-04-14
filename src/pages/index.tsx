@@ -1,9 +1,11 @@
 import Head from "next/head";
-import { css } from "@linaria/core";
+import { LinariaClassName, css } from "@linaria/core";
 
 import { Button } from "@/components/Button";
 import { useState } from "react";
 import { ButtonThemed } from "@/components/ButtonThemed";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { theme1, theme2 } from "@/styles/theme";
 
 const lightTheme = css`
   --color-accent: #082641;
@@ -42,6 +44,17 @@ const buttonContainer = css`
 export default function Home() {
   const [count, setCount] = useState<number>(0);
 
+  const [theme, setTheme] = useState<LinariaClassName>(theme1);
+
+  const handleThemeToggle = () => {
+    console.log("handleThemeToggle: TODO");
+    if (theme === theme1) {
+      setTheme(theme2);
+    } else {
+      setTheme(theme1);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -50,7 +63,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={darkTheme}>
+      {/* <main className={darkTheme}> */}
+      <main className={theme}>
         <div className={container}>
           <div>
             <div className={title}>Counter</div>
@@ -66,16 +80,19 @@ export default function Home() {
             </div>
             <div className={buttonContainer}>
               <Button
-                color="#076c88"
+                //color="#076c88"
                 onClick={() => setCount((count) => count + 1)}
               >
                 Increase
               </Button>
             </div>
             <div className={buttonContainer}>
-              <ButtonThemed onClick={() => setCount((count) => count - 1)}>
+              <Button onClick={() => setCount((count) => count - 1)}>
                 Decrease
-              </ButtonThemed>
+              </Button>
+            </div>
+            <div className={buttonContainer}>
+              <ThemeToggle onToggle={handleThemeToggle} />
             </div>
           </div>
         </div>
