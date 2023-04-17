@@ -5,17 +5,7 @@ import { Button } from "@/components/Button";
 import { useState } from "react";
 import { ButtonThemed } from "@/components/ButtonThemed";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { theme1, theme2 } from "@/styles/theme";
-
-const lightTheme = css`
-  --color-accent: #082641;
-  --color-accent-hover: #031f28;
-`;
-
-const darkTheme = css`
-  --color-accent: #258ce6;
-  --color-accent-hover: #075975;
-`;
+import { lightMode, darkMode } from "@/styles/theme";
 
 const container = css`
   display: flex;
@@ -44,14 +34,14 @@ const buttonContainer = css`
 export default function Home() {
   const [count, setCount] = useState<number>(0);
 
-  const [theme, setTheme] = useState<LinariaClassName>(theme1);
+  const [theme, setTheme] = useState<LinariaClassName>(lightMode);
 
   const handleThemeToggle = () => {
     console.log("handleThemeToggle: TODO");
-    if (theme === theme1) {
-      setTheme(theme2);
+    if (theme === lightMode) {
+      setTheme(darkMode);
     } else {
-      setTheme(theme1);
+      setTheme(lightMode);
     }
   };
 
@@ -72,10 +62,7 @@ export default function Home() {
           See "Dynamic styles with css tag" documentation:
           https://github.com/callstack/linaria/blob/master/docs/DYNAMIC_STYLES.md
           */}
-            <div
-              className={counter}
-              style={{ color: count >= 0 ? "#16bd3d" : "red" }}
-            >
+            <div className={counter} style={{ color: count >= 0 ? "#16bd3d" : "red" }}>
               {count}
             </div>
             <div className={buttonContainer}>
@@ -87,9 +74,7 @@ export default function Home() {
               </Button>
             </div>
             <div className={buttonContainer}>
-              <Button onClick={() => setCount((count) => count - 1)}>
-                Decrease
-              </Button>
+              <Button onClick={() => setCount((count) => count - 1)}>Decrease</Button>
             </div>
             <div className={buttonContainer}>
               <ThemeToggle onToggle={handleThemeToggle} />

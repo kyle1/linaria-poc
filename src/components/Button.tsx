@@ -7,8 +7,8 @@ import { styled } from "@linaria/react";
 export const Button = styled.button`
   border: 1px solid var(--color-primary);
   border-radius: 5px;
-  color: white;
   background-color: var(--color-primary);
+  color: white;
   width: 100px;
   height: 50px;
   cursor: pointer;
@@ -19,11 +19,13 @@ export const Button = styled.button`
   } */
 
   &:hover {
-    border: 1px solid var(--color-accent);
-    background-color: var(--color-accent);
+    border: 1px solid var(--color-button-primary-background-hover);
+    background-color: var(--color-button-primary-background-hover);
   }
 
   &:active {
     transform: translateY(2px);
+    border: 1px solid var(--color-button-primary-background-active);
+    background-color: var(--color-button-primary-background-active);
   }
 `;
